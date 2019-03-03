@@ -25,7 +25,13 @@ class ProjectDetail extends Component{
         
     }
 
-    
+    renderEditForm = () =>{
+        if(!this.state.title){
+            this.getSingleProject();
+        }else{
+            return <EditProject theProject={this.state} getTheProject={this.getSingleProject} {...this.props}/> 
+        }
+    }
     
     
     render (){
@@ -35,10 +41,11 @@ class ProjectDetail extends Component{
             
             <h1>{this.state.title}</h1>
             <p>{this.state.description}</p>
+            <div>{this.renderEditForm()}</div>
             <Link to={'/projects'}>Back</Link>
             
             </div>)
     }
 }
-console.log(ProjectDetail)
+
 export default  ProjectDetail

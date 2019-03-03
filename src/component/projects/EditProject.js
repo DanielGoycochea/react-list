@@ -20,20 +20,21 @@ class EditProject extends Component{
             },
             body: JSON.stringify(data)
         };
-
+        // console.log (options)
         event.preventDefault();
         
-        fetch(`http://localhost:3005/api/projects/${this.props._id}`,options)
+        fetch(`http://localhost:3005/api/projects/${this.props.theProject._id}`,options)
             .then(()=>{
-                this.props.getProject()
+                this.props.getTheProject()
                 this.props.history.push('/projects');//redireccionaa a Projects
+                
             })
             .catch( error => console.log(error) )
             }
 
     handleChangeTitle = (event)=>{
         this.setState({
-            title:event.taget.value
+            title: event.target.value
             })
         }
         handleChangeDesc=(event)=>{
@@ -47,7 +48,7 @@ class EditProject extends Component{
                 <div>
                     <hr/>
                     <h3>Edit Form</h3>
-                    <form onSummit={this.handleFormSubmit}>
+                    <form onSubmit={this.handleFormSubmit}>
                         <label htmlFor="title">Title</label>
                         <input type="text" name="title" value={this.state.title} onChange={e => this.handleChangeTitle(e)}/>
                         <label htmlFor="description">Descripcion</label>
