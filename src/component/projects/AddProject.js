@@ -23,6 +23,7 @@ handleFormSummit = event=>{
 
     fetch("http://localhost:3005/api/projects", options)
     .then(()=>{
+        this.props.getData();//actualiza la informacion
         this.setState({
             title: "", 
             description: ""});
@@ -39,7 +40,7 @@ handleFormSummit = event=>{
                 <form onSubmit={this.handleFormSummit}>
                     <label htmlFor="title">Title</label>
                     <input type="text" name="title" value={this.state.title }onChange={e=>this.handleChange(e)}/>
-                    <label htmlFor="descrption">DEscripcion del  Proyecto</label>
+                    <label htmlFor="descrption">Descripcion del  Proyecto</label>
                     <textarea name="description" value={this.state.description} onChange={e=>this.handleChange(e)}/>
                     <input type="submit" value="crear proyecto"/>
                 </form>
