@@ -20,13 +20,13 @@ class EditProject extends Component{
             },
             body: JSON.stringify(data)
         };
-        // console.log (options)
+        
         event.preventDefault();
         
         fetch(`http://localhost:3005/api/projects/${this.props.theProject._id}`,options)
             .then(()=>{
                 this.props.getTheProject()
-                this.props.history.push('/projects');//redireccionaa a Projects
+                this.props.history.push('/projects');
                 
             })
             .catch( error => console.log(error) )

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import EditProject from './EditProject';
 
 
@@ -33,7 +33,23 @@ class ProjectDetail extends Component{
         }
     }
     
-    
+    deleteProject =(id) =>{
+        const {params} = this.props.match;
+        const options={
+            method: "DELETE",
+            };
+        fetch(`http://localhost:3005/api/projects/${params.id}`,options)
+        .then( responseFromApi =>{
+            responseFromApi.json()
+            this.props.history.push('/projects'); // !!!         
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
+
     render (){
         return (
             
@@ -42,6 +58,7 @@ class ProjectDetail extends Component{
             <h1>{this.state.title}</h1>
             <p>{this.state.description}</p>
             <div>{this.renderEditForm()}</div>
+            <button onClick={()=> this.deleteProject(this.state._id)}>delete</button>
             <Link to={'/projects'}>Back</Link>
             
             </div>)
